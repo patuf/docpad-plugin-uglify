@@ -21,7 +21,9 @@ out/
 *output/
 coffeejs/
 coffee/
-es5/
+es6/
+es7/
+es8/
 es2015/
 esnext/
 docs/

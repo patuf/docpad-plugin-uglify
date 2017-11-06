@@ -1,14 +1,14 @@
 {
-  "name": "docpad-plugin-uglify",
-  "version": "2.5.0",
-  "description": "Minify JavaScript in DocPad using UglifyJS",
-  "homepage": "https://github.com/docpad/docpad-plugin-uglify",
+  "name": "docpad-plugin-uglifyes",
+  "version": "0.0.1",
+  "description": "Minify JavaScript in DocPad using UglifyES",
+  "homepage": "https://github.com/patuf/docpad-plugin-uglify",
   "license": "MIT",
   "keywords": [
     "docpad",
     "docpad-plugin",
     "uglify",
-    "uglify-js"
+    "uglify-es"
   ],
   "badges": {
     "list": [
@@ -53,11 +53,11 @@
     "vsopvsop (https://github.com/vsopvsop)"
   ],
   "bugs": {
-    "url": "https://github.com/docpad/docpad-plugin-uglify/issues"
+    "url": "https://github.com/patuf/docpad-plugin-uglify/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/docpad/docpad-plugin-uglify.git"
+    "url": "https://github.com/patuf/docpad-plugin-uglify.git"
   },
   "engines": {
     "node": ">=0.8"
@@ -66,26 +66,26 @@
     {
       "description": "Source + CoffeeScript + Require",
       "directory": "source",
-      "entry": "uglify.plugin.coffee",
+      "entry": "uglifyes.plugin.coffee",
       "syntaxes": [
         "coffeescript",
         "require"
       ]
     },
     {
-      "description": "CoffeeScript Compiled + ES5 + Require",
-      "directory": "es5",
-      "entry": "uglify.plugin.js",
+      "description": "CoffeeScript Compiled + ES6 + Require",
+      "directory": "es6",
+      "entry": "uglifyes.plugin.js",
       "syntaxes": [
         "javascript",
-        "es5",
+        "es6",
         "require"
       ]
     }
   ],
-  "main": "es5/uglify.plugin.js",
+  "main": "es6/uglifyes.plugin.js",
   "dependencies": {
-    "uglify-js": "~2.4.7"
+    "uglify-es": "~3.1.7"
   },
   "devDependencies": {
     "coffee-script": "^1.12.5",
@@ -100,9 +100,9 @@
     "our:setup": "npm run our:setup:npm && npm run our:setup:docpad",
     "our:setup:npm": "npm install",
     "our:setup:docpad": "bash ./docpad-setup.sh",
-    "our:clean": "rm -Rf ./docs ./es2015 ./es5 ./out",
+    "our:clean": "rm -Rf ./docs ./es8 ./es7 ./es6 ./out",
     "our:compile": "npm run our:compile:coffee",
-    "our:compile:coffee": "coffee -bco ./es5 ./source",
+    "our:compile:coffee": "coffee -bco ./es6 ./source",
     "our:meta": "npm run our:meta:projectz",
     "our:meta:projectz": "projectz compile",
     "our:verify": "npm run our:verify:coffeelint",
@@ -115,6 +115,6 @@
     "our:release:check:dirty": "git diff --exit-code",
     "our:release:tag": "export MESSAGE=$(cat ./HISTORY.md | sed -n \"/## v$npm_package_version/,/##/p\" | sed 's/## //' | awk 'NR>1{print buf}{buf = $0}') && test \"$MESSAGE\" || (echo 'proper changelog entry not found' && exit -1) && git tag v$npm_package_version -am \"$MESSAGE\"",
     "our:release:push": "git push origin master && git push origin --tags",
-    "test": "node --harmony es5/uglify.test.js --joe-reporter=console"
+    "test": "node --harmony es6/uglifyes.test.js --joe-reporter=console"
   }
 }
