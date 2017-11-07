@@ -1,7 +1,7 @@
 # Export Plugin
 module.exports = (BasePlugin) ->
 	# Define Plugin
-	class UglifyEsPlugin extends BasePlugin
+	class UglifyesPlugin extends BasePlugin
 		# Plugin Name
 		name: 'uglifyes'
 
@@ -28,17 +28,17 @@ module.exports = (BasePlugin) ->
 			# Prepare.
 			config = @getConfig()
 			{extension, file, content} = opts
-			uglifyOpts = file.get('uglify-es')
+			uglifyOpts = file.get('uglify')
 
 			# Ensure we are acting on a JavaScript document.
-			if extension == 'js' and file.type == 'document' and uglifyOpts
+			if extension == 'js' and file.type == 'document' and uglifyOpts and config.enabled
 				# Construct the options.
 				uglifyOpts = {}  if typeof uglifyOpts == 'boolean'
-				uglifyOpts.fromString = true
+				# uglifyOpts.fromString = true
 				# @todo Use uglifyOpts.output to display warnings and logs.
 
 				# Inject the default configuration options.
-				for own key, value of config when key isnt 'environments'
+				for own key, value of config when key not in ['environments', 'enabled']
 					uglifyOpts[key] ?= value
 
 				# Minify the content with UglifyES.

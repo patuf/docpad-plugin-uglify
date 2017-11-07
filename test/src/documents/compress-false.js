@@ -15,4 +15,3 @@ function longFunctionC(argumentC,argumentD) {
 var result = longFunctionC(3,4);
 
 /*! I might be preserved, yay! */
-
